@@ -7,7 +7,6 @@ class MessageList extends Component {
         return (
             <main className="messages">
                 {messages.map((message, index) => <Message key={index} message={message} />)}
-                <div className="message system">{notification}</div>
             </main> 
         )
     }

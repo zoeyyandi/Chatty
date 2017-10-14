@@ -21,7 +21,8 @@ export default class App extends Component {
           this.setState({messages})
           break;
         case "incomingNotification":
-          this.setState({notification: data.content})
+          const message = this.state.messages.concat({content: data.content})
+          this.setState({messages: message, currentUser: {name: data.currentUser}})
           break;
         case "activeUsers":
           this.setState({activeUsers: data.content});
@@ -35,9 +36,11 @@ export default class App extends Component {
 
   changeName = (user) => {
     if(this.state.currentUser.name !== user) {
+      const currentUser = {name: user}
       const postNotification = {
         type: 'postNotification',
-        content: `${this.state.currentUser.name} has changed their name to ${user}`
+        content: `${this.state.currentUser.name} has changed their name to ${user}`,
+        currentUser: user
       }
       this.socket.send(JSON.stringify(postNotification))
     }
@@ -50,15 +53,14 @@ export default class App extends Component {
       type: 'postMessage'
     }
     this.socket.send(JSON.stringify(message))
-    // const messages = this.state.messages.concat(message)
-    // this.setState({messages})
   }
 
   render() {
+    console.log('state', this.state.messages)
     return (
       <div>
         <NavBar activeUsers={this.state.activeUsers} />
-        <MessageList notification={this.state.notification} messages={this.state.messages} />
+        <MessageList messages={this.state.messages} user={this.state.currentUser} />
         <ChatBar changeName={this.changeName} sendMessage={this.sendMessage} currentUser={this.state.currentUser} />
       </div>
     )
