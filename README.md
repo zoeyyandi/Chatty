@@ -15,12 +15,19 @@ git remote add origin [YOUR NEW REPOSITORY]
 # Manually update your package.json file
 ```
 
-Install the dependencies and start the server.
+Install the dependencies and start react app.
 
 ```
 npm install
 npm start
 open http://localhost:3000
+```
+
+start websocket server
+
+```
+cd chatty_server
+node server.js
 ```
 
 ### Static Files
