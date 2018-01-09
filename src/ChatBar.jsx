@@ -28,14 +28,14 @@ class ChatBar extends Component {
         return (
             <footer className="chatbar">
                 <input
-                    ref={(user) => {this.user=user}} 
+                    ref={user => this.user = user}
                     className="chatbar-username" 
                     placeholder="Your Name (Optional)" 
                     defaultValue={currentUser.name} 
                     onKeyDown={this.handleKeyDown2}
                 />
                 <input 
-                    ref={(message) => {this.message=message}}
+                    ref={message => this.message=message}
                     className="chatbar-message" 
                     placeholder="Type a message and hit ENTER" 
                     onKeyDown={this.handleKeyDown} />
