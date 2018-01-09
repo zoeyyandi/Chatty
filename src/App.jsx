@@ -8,7 +8,8 @@ export default class App extends Component {
 
   constructor(props) {
     super(props)
-    this.state = data
+    this.state = data;
+    this.socket = null
   }
 
   componentDidMount() {
@@ -56,7 +57,6 @@ export default class App extends Component {
   }
 
   render() {
-    console.log('state', this.state.messages)
     return (
       <div>
         <NavBar activeUsers={this.state.activeUsers} />
